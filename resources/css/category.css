@@ -1,0 +1,43 @@
+.categorySwiper{
+    padding: 20px !important;
+}
+
+/*メニュー画像*/
+.swiper-slide img {
+    width: 30dvw;
+    height: 40dvh;
+    object-fit: cover;
+}
+
+/* アニメーションを定義 */
+@keyframes zoomFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(4); /* 画面いっぱいまで拡大 */
+    }
+}
+
+/* 画像にアニメーションを適用するクラス */
+.zoom-fade-out {
+    animation: zoomFadeOut 1.5s ease-out forwards; /* 1.5秒で拡大・フェードアウト */
+}
+
+@keyframes moveUpFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Start at the original position */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60vh);
+    }
+}
+
+/* Class to apply to the <p> tag */
+.move-up-fade-out {
+    animation: moveUpFadeOut 1.5s ease-out forwards; /* Same duration as image animation */
+}

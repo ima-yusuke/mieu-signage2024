@@ -1,0 +1,17 @@
+.contentSwiper {
+    width: 100%; /* コンテナの幅を100%に設定 */
+    max-width: 99%; /* 必要に応じて調整 */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentSwiper .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: gray;
+    /*width: 25% !important;*/
+}
+
+
