@@ -11,12 +11,12 @@ const CategorySlide = document.getElementsByClassName("category-slide");
 // コンテンツ
 const ContentsContainer = document.getElementById("contents_container");
 const ContentsWrapper = document.getElementById("swiper_wrapper");
-const Category = document.getElementById("category");
+const CategoryTitle = document.getElementById("category");
 const CloseContentsBtn = document.getElementById("close_contents_btn");
 
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
-
+const slide = document.getElementById('slide');
 
 let testArray = [
     {"id":1, "name":"test1","url":"https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1"},
@@ -39,7 +39,7 @@ const categorySwiper = new Swiper('.categorySwiper', {
     loop: true,          // スライドをループさせます。最後のスライドまで到達したら最初のスライドに戻ります。
     coverflowEffect: {   // カバーフロー効果の詳細設定を行うオプションです。
         rotate: 50,      // スライドの回転角度を設定します。値が大きいほどスライドが回転して立体感が増します。
-        stretch: 0,      // スライド同士の間隔を制御します。正の値でスライド間が広がり、負の値で縮まります。
+        stretch: -30,      // スライド同士の間隔を制御します。正の値でスライド間が広がり、負の値で縮まります。
         depth: 100,      // 立体的な効果を強調するための奥行き（Z軸）を設定します。値が大きいほど深い効果が出ます。
         modifier: 1,     // 効果の強さを調整します。数値を大きくするほど効果が強調されます。
         slideShadows: true, // 各スライドに影を追加し、立体感を演出します。
@@ -73,6 +73,9 @@ for (let i = 0; i < CategorySlide.length; i++) {
             const slideImage = e.currentTarget.querySelector("img");
             const slideRect = slideImage.getBoundingClientRect();
 
+            const animImage = AnimationContainer.querySelector("img");
+            const animText = AnimationContainer.querySelector("p");
+
             // スライド非表示
             HideSlide();
 
@@ -88,32 +91,12 @@ for (let i = 0; i < CategorySlide.length; i++) {
                 ContentsWrapper.appendChild(newSlide);
             }
 
-            // animation_containerの画像とテキストにスタイルを適用
-            const animImage = AnimationContainer.querySelector("img");
-            const animText = AnimationContainer.querySelector("p");
-
-            // animation_container内の画像とテキストにスライドのサイズを適用
-            animImage.style.width = `${slideRect.width}px`;
-            animImage.style.height = `${slideRect.height}px`;
-
-            AnimationContainer.classList.add("flex");
-            AnimationContainer.classList.remove("hidden");
-
-            animImage.classList.add("zoom-fade-out");
-            animText.classList.add("move-up-fade-out");
-
-            // アニメーション完了後に非表示にする
-            animImage.addEventListener("animationend", function() {
-                AnimationContainer.classList.add("hidden");
-                animImage.classList.remove("zoom-fade-out"); // クラスをリセット
-            });
+            //画像サイズ変更アニメーション
+            ImgSizeChangeAnimation(slideRect,animImage,animText);
 
             setTimeout(function(){
-                ContentsContainer.classList.remove("hidden");
-                ContentsContainer.classList.add("flex");
-                CloseContentsBtn.style.display = "block";
-                Category.style.display = "block";
-                Category.innerText = animText.innerText;
+
+                ShowContents(animText);
 
                 // Swiperが動作している場合、ここで更新
                 if (typeof categorySwiper !== "undefined") {
@@ -124,19 +107,65 @@ for (let i = 0; i < CategorySlide.length; i++) {
     });
 }
 
+// コンテンツを閉じるボタンをクリック時の処理
+CloseContentsBtn.addEventListener("click", function () {
+
+    slide.style.left = '0'; // 左端に移動
+    slide.style.opacity = '1'; // 透明にする
+
+    setTimeout(function() {
+        DeleteContents();
+        HideContents();
+        CategoryContainer.style.display = "flex";
+        contentSwiper.slideTo(0, 0, false); // スライドを初期位置に戻す（アニメーションなし）
+        slide.style.left = '100%'; // 右端に移動
+    },1000);
+
+    // さらに1秒後にスライドを非表示に戻す
+    setTimeout(function() {
+        slide.style.opacity = '0'; // 透明にする
+        slide.style.left = '-100%'; // 左端の外に移動
+    }, 2000); // 2秒後にクラスを削除して元の状態に戻す
+});
+
 // カテゴリースライド非表示
 function HideSlide(){
     CategoryContainer.style.display = "none";
 }
 
-// コンテンツを閉じるボタンをクリック時の処理
-CloseContentsBtn.addEventListener("click", function () {
-    ContentsContainer.classList.add("hidden");
-    DeleteContents();
-    CategoryContainer.style.display = "flex";
-    CloseContentsBtn.style.display = "none";
-    Category.style.display = "none";
-});
+// カテゴリー画像サイズ変更アニメーション
+function ImgSizeChangeAnimation(slideRect,animImage,animText){
+    // animation_container内の画像とテキストにスライドのサイズを適用
+    animImage.style.width = `${slideRect.width}px`;
+    animImage.style.height = `${slideRect.height}px`;
+
+    AnimationContainer.classList.add("flex");
+    AnimationContainer.classList.remove("hidden");
+
+    animImage.classList.add("zoom-fade-out");
+    animText.classList.add("move-up-fade-out");
+
+    let sizeBigBtn = document.getElementById('btn1')
+    let sizeSmallBtn = document.getElementById('btn2')
+
+    if(sizeBigBtn.style.display === 'none'){
+        sizeSmallBtn.classList.add('btn-fade-out')
+    }else{
+        sizeBigBtn.classList.add('btn-fade-out')
+    }
+
+    // アニメーション完了後に非表示にする
+    animImage.addEventListener("animationend", function() {
+        AnimationContainer.classList.add("hidden");
+        animImage.classList.remove("zoom-fade-out"); // クラスをリセット
+
+        if(sizeBigBtn.style.display === 'none'){
+            sizeSmallBtn.classList.remove('btn-fade-out')
+        }else{
+            sizeBigBtn.classList.remove('btn-fade-out')
+        }
+    });
+}
 
 // コンテンツを削除
 function DeleteContents(){
@@ -144,3 +173,21 @@ function DeleteContents(){
         ContentsWrapper.removeChild(ContentsWrapper.firstChild);
     }
 }
+
+// コンテンツ非表示
+function HideContents(){
+    ContentsContainer.classList.add("hidden");
+    CloseContentsBtn.style.display = "none";
+    CategoryTitle.style.display = "none";
+}
+
+// コンテンツ表示
+function ShowContents(text){
+    ContentsContainer.classList.remove("hidden");
+    ContentsContainer.classList.add("flex");
+    CloseContentsBtn.style.display = "block";
+    CategoryTitle.style.display = "block";
+    CategoryTitle.innerText = text.innerText;
+}
+
+

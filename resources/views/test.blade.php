@@ -19,17 +19,23 @@
         </style>
     @endif
 </head>
-<body class="flex justify-center items-center">
-
+<body class="flex justify-center items-center box">
+<div id="slide" class="slide"></div>
 {{--ヘッダー--}}
-<div class="fixed top-0 w-full flex items-center justify-center bg-green-700 min-h-[8dvh]">
-    <h1 class="text-white absolute left-[2%] top-1/2 transform -translate-y-1/2">三重大学紹介</h1>
+<div class="fixed top-0 w-full flex items-center justify-center min-h-[8dvh]">
+    <h1 class="text-2xl font-bold absolute left-[4%] top-1/2 transform -translate-y-1/2">三重大学紹介</h1>
     <aside class="flex items-center gap-4 absolute right-[2%] top-1/2 transform -translate-y-1/2">
-        <button id="btn1">全画面</button>
-        <button id="btn2" class="hidden">全画面解除</button>
-        <button id="close_contents_btn" class="hidden text-red-800">閉じる</button>
+        <div class="btn-wrap" id="btn1">
+            <a class="btn btn-switch"><span>全画面</span></a>
+        </div>
+        <div class="btn-wrap hidden" id="btn2">
+            <a class="btn btn-switch"><span>全画面解除</span></a>
+        </div>
+        <div class="btn-wrap hidden" id="close_contents_btn">
+            <a class="btn btn-switch2"><span>閉じる</span></a>
+        </div>
     </aside>
-    <p id="category" class="hidden text-white text-xl"></p>
+    <p id="category" class="hidden text-xl font-bold border-b border-solid border-black"></p>
 </div>
 
 <!-- 学部メニュー -->

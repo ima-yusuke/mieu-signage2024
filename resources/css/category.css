@@ -1,10 +1,30 @@
 .categorySwiper{
-    padding: 20px !important;
+    padding: 2% !important;
 }
 
-/*メニュー画像*/
+.category-slide{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08); /* 立体感のある影 */
+    transition: transform 0.2s, box-shadow 0.2s; /* ホバー時のアニメーション */
+    background-color: #E9E9E9;
+}
+
+.category-slide:hover {
+    transform: translateY(-4px); /* ホバー時に少し浮き上がらせる */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2), 0px 4px 6px rgba(0, 0, 0, 0.15); /* 影を強調 */
+}
+
+.category-slide p{
+    padding: 1%;
+}
+
+    /*メニュー画像*/
 .swiper-slide img {
-    width: 30dvw;
+    width: 100% !important;
     height: 40dvh;
     object-fit: cover;
 }
