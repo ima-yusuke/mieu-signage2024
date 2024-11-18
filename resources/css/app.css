@@ -137,4 +137,3 @@ a.btn-switch2:hover span {
 .btn-fade-out {
     animation: btnFadeOut 1.5s ease-out forwards; /* 1.5秒で拡大・フェードアウト */
 }
-

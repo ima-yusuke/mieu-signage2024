@@ -20,6 +20,7 @@
     @endif
 </head>
 <body class="flex justify-center items-center box">
+
 <div id="slide" class="slide"></div>
 {{--ヘッダー--}}
 <div class="fixed top-0 w-full flex items-center justify-center min-h-[8dvh]">
@@ -70,6 +71,5 @@
         <div class="swiper-pagination content-pagination" style="position:fixed;bottom:2%;"></div>
     </div>
 </section>
-
 </body>
 </html>

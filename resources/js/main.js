@@ -16,18 +16,64 @@ const CloseContentsBtn = document.getElementById("close_contents_btn");
 
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
+const ImgElement = AnimationContainer.querySelector("img");  // imgタグを取得
+const TextElement = AnimationContainer.querySelector("p");  // pタグを取得
+
 const slide = document.getElementById('slide');
 
 let testArray = [
-    {"id":1, "name":"test1","url":"https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1"},
-    {"id":2, "name":"test2","url":"https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K"},
-    {"id":3, "name":"test3","url":"https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t"},
-    {"id":4, "name":"test4","url":"https://www.youtube.com/embed/zVCPzEru3BQ?si=XhTsEm0Kd518oP56"},
-    {"id":5, "name":"test5","url":"https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2"},
-    {"id":6, "name":"test6","url":"https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp"},
-    {"id":7, "name":"test7","url":"https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k"},
-    {"id":8, "name":"test8","url":"https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3"},
-    {"id":9, "name":"test9","url":"https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"},
+    {"id":1, "name":"test1",
+        "url":
+            [
+                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
+                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
+                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
+                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
+                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
+                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
+                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
+                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
+            ]
+    },
+    {"id":2, "name":"test2",
+        "url":
+            [
+                "https://www.youtube.com/embed/N4GIoQxpJXY?si=-L0i48Ka6ZrPS7Un",
+                "https://www.youtube.com/embed/uXk4f8NFP-Q?si=7J_cppNFqmABxHzh",
+                "https://www.youtube.com/embed/-Zk7Y-8mf6Q?si=9HQbKshaECAFA_tj" ,
+                "https://www.youtube.com/embed/e_YVZkOc8zM?si=ghLWFbErbhUt__er",
+                "https://www.youtube.com/embed/HGl75kurxok?si=0BDEOpRzA-9qvlNw",
+                "https://www.youtube.com/embed/Fp5ghKduTK8?si=11kDiMZhWEm9a1yU",
+                "https://www.youtube.com/embed/SpQ8-xiDYWI?si=Vz1SqSm42zBiPhE7",
+                "https://www.youtube.com/embed/3o11r3qZlNU?si=u_tL9Jno_Xg-PHkh"
+            ]
+    },
+    {"id":3, "name":"test3",
+        "url":
+            [
+                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
+                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
+                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
+                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
+                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
+                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
+                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
+                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
+            ]
+    },
+    {"id":4, "name":"test4",
+        "url":
+            [
+                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
+                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
+                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
+                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
+                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
+                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
+                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
+                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
+            ]
+    },
 ]
 
 // Initialize Swiper with configuration
@@ -64,46 +110,48 @@ const contentSwiper = new Swiper(".contentSwiper", {
         clickable: true,
     },
 });
-
 for (let i = 0; i < CategorySlide.length; i++) {
     CategorySlide[i].addEventListener("click", function (e) {
-        if(e.currentTarget.id === "1"){
 
-            // クリックされたスライドのサイズと位置を取得
-            const slideImage = e.currentTarget.querySelector("img");
-            const slideRect = slideImage.getBoundingClientRect();
+        // クリックされたスライドのサイズと位置を取得
+        const slideImage = e.currentTarget.querySelector("img");
+        const slideRect = slideImage.getBoundingClientRect();
 
-            const animImage = AnimationContainer.querySelector("img");
-            const animText = AnimationContainer.querySelector("p");
+        const animImage = AnimationContainer.querySelector("img");
+        const animText = AnimationContainer.querySelector("p");
 
-            // スライド非表示
-            HideSlide();
+        // スライド非表示
+        HideSlide();
 
-            // ContentsWrapperにコンテンツを追加
-            for (let j=0;j<testArray.length;j++){
-                let newSlide = document.createElement("div");
-                newSlide.classList.add("swiper-slide");
-                newSlide.innerHTML =
-                    `<iframe width="100%" height="100%" src="${testArray[j].url}"
-                            title="YouTube video player" frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>`
-                ContentsWrapper.appendChild(newSlide);
-            }
 
-            //画像サイズ変更アニメーション
-            ImgSizeChangeAnimation(slideRect,animImage,animText);
-
-            setTimeout(function(){
-
-                ShowContents(animText);
-
-                // Swiperが動作している場合、ここで更新
-                if (typeof categorySwiper !== "undefined") {
-                    contentSwiper.update();
-                }
-            },1500);
+        const selectedData = testArray.find(data => data.id == e.currentTarget.id);
+        // ContentsWrapperにコンテンツを追加
+        for (let j=0;j<selectedData["url"].length;j++){
+            let newSlide = document.createElement("div");
+            newSlide.classList.add("swiper-slide");
+            newSlide.innerHTML =
+                `<iframe width="100%" height="100%" src="${selectedData["url"][j]}"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>`
+            ContentsWrapper.appendChild(newSlide);
         }
+
+        const img = e.currentTarget.closest(".category-slide").querySelector("img");
+        const text = e.currentTarget.closest(".category-slide").querySelector("p");
+
+        //画像サイズ変更アニメーション
+        ImgSizeChangeAnimation(slideRect,animImage,animText,img,text);
+
+        setTimeout(function(){
+
+            ShowContents(animText);
+
+            // Swiperが動作している場合、ここで更新
+            if (typeof categorySwiper !== "undefined") {
+                contentSwiper.update();
+            }
+        },1500);
     });
 }
 
@@ -134,37 +182,42 @@ function HideSlide(){
 }
 
 // カテゴリー画像サイズ変更アニメーション
-function ImgSizeChangeAnimation(slideRect,animImage,animText){
+function ImgSizeChangeAnimation(slideRect,animImage,animText,img,text){
     // animation_container内の画像とテキストにスライドのサイズを適用
     animImage.style.width = `${slideRect.width}px`;
     animImage.style.height = `${slideRect.height}px`;
 
     AnimationContainer.classList.add("flex");
     AnimationContainer.classList.remove("hidden");
+    ImgElement.src = img.src;
+    TextElement.innerText = text.innerText;
 
-    animImage.classList.add("zoom-fade-out");
-    animText.classList.add("move-up-fade-out");
+    setTimeout(function(){
+        animImage.classList.add("zoom-fade-out");
+        animText.classList.add("move-up-fade-out");
 
-    let sizeBigBtn = document.getElementById('btn1')
-    let sizeSmallBtn = document.getElementById('btn2')
-
-    if(sizeBigBtn.style.display === 'none'){
-        sizeSmallBtn.classList.add('btn-fade-out')
-    }else{
-        sizeBigBtn.classList.add('btn-fade-out')
-    }
-
-    // アニメーション完了後に非表示にする
-    animImage.addEventListener("animationend", function() {
-        AnimationContainer.classList.add("hidden");
-        animImage.classList.remove("zoom-fade-out"); // クラスをリセット
+        let sizeBigBtn = document.getElementById('btn1')
+        let sizeSmallBtn = document.getElementById('btn2')
 
         if(sizeBigBtn.style.display === 'none'){
-            sizeSmallBtn.classList.remove('btn-fade-out')
+            sizeSmallBtn.classList.add('btn-fade-out')
         }else{
-            sizeBigBtn.classList.remove('btn-fade-out')
+            sizeBigBtn.classList.add('btn-fade-out')
         }
-    });
+
+        // アニメーション完了後に非表示にする
+        animImage.addEventListener("animationend", function() {
+            AnimationContainer.classList.add("hidden");
+            animImage.classList.remove("zoom-fade-out"); // クラスをリセット
+
+            if(sizeBigBtn.style.display === 'none'){
+                sizeSmallBtn.classList.remove('btn-fade-out')
+            }else{
+                sizeBigBtn.classList.remove('btn-fade-out')
+            }
+        });
+    },10);//拡大する画像を切り替えてからアニメーションスタートさせるため
+
 }
 
 // コンテンツを削除
@@ -189,5 +242,4 @@ function ShowContents(text){
     CategoryTitle.style.display = "block";
     CategoryTitle.innerText = text.innerText;
 }
-
 
