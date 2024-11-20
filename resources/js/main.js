@@ -47,33 +47,7 @@ let testArray = [
                 "https://www.youtube.com/embed/SpQ8-xiDYWI?si=Vz1SqSm42zBiPhE7",
                 "https://www.youtube.com/embed/3o11r3qZlNU?si=u_tL9Jno_Xg-PHkh"
             ]
-    },
-    {"id":3, "name":"test3",
-        "url":
-            [
-                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
-                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
-                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
-                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
-                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
-                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
-                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
-                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
-            ]
-    },
-    {"id":4, "name":"test4",
-        "url":
-            [
-                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
-                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
-                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
-                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
-                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
-                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
-                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
-                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
-            ]
-    },
+    }
 ]
 
 // Initialize Swiper with configuration

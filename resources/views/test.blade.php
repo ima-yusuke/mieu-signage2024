@@ -45,10 +45,10 @@
     <div class="swiper categorySwiper">
         <div class="swiper-wrapper">
             <!-- Swiper Slides -->
-            <x-category-slide id="1" name="教育学部" url="storage/img/lab-01.jpg" />
-            <x-category-slide id="2" name="人文学部" url="storage/img/lab-02.jpg" />
-            <x-category-slide id="3" name="工学部" url="storage/img/lab-03.png" />
-            <x-category-slide id="4" name="地域イノベーション学研究学部" url="storage/img/lab-04.png" />
+            <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
+            <x-category-slide id="2" name="工学部研究室取材" url="storage/img/lab-02.jpg" />
+            <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
+            <x-category-slide id="2" name="工学部研究室取材" url="storage/img/lab-02.jpg" />
         </div>
     </div>
 
