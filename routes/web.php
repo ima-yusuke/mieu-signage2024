@@ -1,15 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+//Route::get('/test', function () {
+//    return view('test');
+//});
+
+Route::get('/test', [PageController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
