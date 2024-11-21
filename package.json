@@ -17,7 +17,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@tsparticles/engine": "^3.6.0",
         "swiper": "^11.1.14",
-        "tsparticles": "^3.5.0"
+        "three": "^0.170.0"
     }
 }

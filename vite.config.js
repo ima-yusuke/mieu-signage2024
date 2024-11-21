@@ -11,8 +11,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/main.js',
                 'resources/js/screen-size.js',
+                `resources/js/particle.js`,
                 'node_modules/swiper/swiper-bundle.min.css', // SwiperのCSSを追加
-
             ],
             refresh: true,
         }),

@@ -190,7 +190,7 @@ function ImgSizeChangeAnimation(slideRect,animImage,animText,img,text){
                 sizeBigBtn.classList.remove('btn-fade-out')
             }
         });
-    },10);//拡大する画像を切り替えてからアニメーションスタートさせるため
+    },100);//拡大する画像を切り替えてからアニメーションスタートさせるため
 
 }
 

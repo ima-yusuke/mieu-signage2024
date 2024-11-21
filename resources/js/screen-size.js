@@ -21,3 +21,5 @@ document.getElementById('btn2').addEventListener('click', function(){
     document.getElementById('btn1').style.display = 'block';
     document.getElementById('btn2').style.display = 'none';
 });
+
+
