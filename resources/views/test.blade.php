@@ -20,6 +20,7 @@
         </style>
     @endif
 </head>
+
 <body class="flex justify-center items-center box">
 <div id="tsparticles"></div>
 <div id="slide" class="slide"></div>

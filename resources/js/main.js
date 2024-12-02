@@ -154,43 +154,49 @@ function HideCategoryContainer(){
 }
 
 // カテゴリー画像サイズ変更アニメーション
-function ImgSizeChangeAnimation(slideRect,animImage,animText,img,text){
+async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text) {
     // animation_container内の画像とテキストにスライドのサイズを適用
     animImage.style.width = `${slideRect.width}px`;
     animImage.style.height = `${slideRect.height}px`;
 
     AnimationContainer.classList.add("flex");
     AnimationContainer.classList.remove("hidden");
-    ImgElement.src = img.src;
-    TextElement.innerText = text.innerText;
 
-    setTimeout(function(){
-        animImage.classList.add("zoom-fade-out");
-        animText.classList.add("move-up-fade-out");
+    // 画像の読み込みが完了するまで待機
+    await new Promise((resolve) => {
+        ImgElement.src = img.src;
+        TextElement.innerText = text.innerText; // テキストの設定
+        ImgElement.onload = resolve; // 画像の読み込み完了後にresolveを呼び出す
+    });
 
-        let sizeBigBtn = document.getElementById('btn1')
-        let sizeSmallBtn = document.getElementById('btn2')
+    // この後のコードは、上記のPromiseがresolveされるまで実行されません。
 
-        if(sizeBigBtn.style.display === 'none'){
-            sizeSmallBtn.classList.add('btn-fade-out')
-        }else{
-            sizeBigBtn.classList.add('btn-fade-out')
+    // アニメーションを開始する
+    animImage.classList.add("zoom-fade-out");
+    animText.classList.add("move-up-fade-out");
+
+    let sizeBigBtn = document.getElementById('btn1');
+    let sizeSmallBtn = document.getElementById('btn2');
+
+    if (sizeBigBtn.style.display === 'none') {
+        sizeSmallBtn.classList.add('btn-fade-out');
+    } else {
+        sizeBigBtn.classList.add('btn-fade-out');
+    }
+
+    // アニメーション完了後に非表示にする
+    animImage.addEventListener("animationend", function () {
+        AnimationContainer.classList.add("hidden");
+        animImage.classList.remove("zoom-fade-out"); // クラスをリセット
+
+        if (sizeBigBtn.style.display === 'none') {
+            sizeSmallBtn.classList.remove('btn-fade-out');
+        } else {
+            sizeBigBtn.classList.remove('btn-fade-out');
         }
-
-        // アニメーション完了後に非表示にする
-        animImage.addEventListener("animationend", function() {
-            AnimationContainer.classList.add("hidden");
-            animImage.classList.remove("zoom-fade-out"); // クラスをリセット
-
-            if(sizeBigBtn.style.display === 'none'){
-                sizeSmallBtn.classList.remove('btn-fade-out')
-            }else{
-                sizeBigBtn.classList.remove('btn-fade-out')
-            }
-        });
-    },100);//拡大する画像を切り替えてからアニメーションスタートさせるため
-
+    });
 }
+
 
 
 // コンテンツ非表示
