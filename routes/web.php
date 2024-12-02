@@ -14,6 +14,10 @@ Route::get('/', function () {
 
 Route::get('/test', [PageController::class, 'index']);
 
+Route::get('/video', function () {
+    return view('video');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

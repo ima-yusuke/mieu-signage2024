@@ -10,9 +10,19 @@ const CategorySlide = document.getElementsByClassName("category-slide");
 
 // コンテンツ
 const ContentsContainer = document.getElementById("contents_container");
-const ContentsWrapper = document.getElementById("swiper_wrapper");
 const CategoryTitle = document.getElementById("category");
 const CloseContentsBtn = document.getElementById("close_contents_btn");
+// コンテンツ_ドローン
+const VideoContainer = document.getElementById("video_container");
+const VideoElement = document.getElementById("myVideo");
+const BtnChapter1 = document.getElementById("chapter1");
+const BtnChapter2 = document.getElementById("chapter2");
+const BtnChapter3 = document.getElementById("chapter3");
+// コンテンツ＿工学部
+const LabContainer = document.getElementById("lab_container");
+let videos =document.getElementsByClassName("video");
+
+let videoFlag = false;
 
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
@@ -20,35 +30,6 @@ const ImgElement = AnimationContainer.querySelector("img");  // imgタグを取�
 const TextElement = AnimationContainer.querySelector("p");  // pタグを取得
 
 const slide = document.getElementById('slide');
-
-let testArray = [
-    {"id":1, "name":"test1",
-        "url":
-            [
-                "https://www.youtube.com/embed/6ibo2m7xtEo?si=e_o-CtlIauhatdn1",
-                "https://www.youtube.com/embed/zzJs4I821iI?si=s164KMq-TxbZoE4K",
-                "https://www.youtube.com/embed/6lJ6zhQaZG8?si=IN6Ljx0T8oSfpX7t",
-                "https://www.youtube.com/embed/JstmCvvTyRE?si=XyiCgNfKhHkBl0f2",
-                "https://www.youtube.com/embed/ANfpuKUk4og?si=uvNC3AxCfBcK2KUp",
-                "https://www.youtube.com/embed/VHhe0gzEm9c?si=mQWTxX9yGEuikx9k",
-                "https://www.youtube.com/embed/SO6ENzhidWE?si=JSZ-49qjsFdZ4BL3",
-                "https://www.youtube.com/embed/nCdxaDWmTJU?si=TlOXmh26m14IWRiC"
-            ]
-    },
-    {"id":2, "name":"test2",
-        "url":
-            [
-                "https://www.youtube.com/embed/N4GIoQxpJXY?si=-L0i48Ka6ZrPS7Un",
-                "https://www.youtube.com/embed/uXk4f8NFP-Q?si=7J_cppNFqmABxHzh",
-                "https://www.youtube.com/embed/-Zk7Y-8mf6Q?si=9HQbKshaECAFA_tj" ,
-                "https://www.youtube.com/embed/e_YVZkOc8zM?si=ghLWFbErbhUt__er",
-                "https://www.youtube.com/embed/HGl75kurxok?si=0BDEOpRzA-9qvlNw",
-                "https://www.youtube.com/embed/Fp5ghKduTK8?si=11kDiMZhWEm9a1yU",
-                "https://www.youtube.com/embed/SpQ8-xiDYWI?si=Vz1SqSm42zBiPhE7",
-                "https://www.youtube.com/embed/3o11r3qZlNU?si=u_tL9Jno_Xg-PHkh"
-            ]
-    }
-]
 
 // Initialize Swiper with configuration
 const categorySwiper = new Swiper('.categorySwiper', {
@@ -71,7 +52,7 @@ const categorySwiper = new Swiper('.categorySwiper', {
     },
 });
 
-const contentSwiper = new Swiper(".contentSwiper", {
+let contentSwiper = new Swiper(".contentSwiper", {
     slidesPerView: 3,// 1行に表示するスライド数を3に設定
     centeredSlides: false,
     grid: {
@@ -84,9 +65,9 @@ const contentSwiper = new Swiper(".contentSwiper", {
         clickable: true,
     },
 });
+
 for (let i = 0; i < CategorySlide.length; i++) {
     CategorySlide[i].addEventListener("click", function (e) {
-
         // クリックされたスライドのサイズと位置を取得
         const slideImage = e.currentTarget.querySelector("img");
         const slideRect = slideImage.getBoundingClientRect();
@@ -94,21 +75,36 @@ for (let i = 0; i < CategorySlide.length; i++) {
         const animImage = AnimationContainer.querySelector("img");
         const animText = AnimationContainer.querySelector("p");
 
-        // スライド非表示
-        HideSlide();
+        //カテゴリースライド非表示
+        HideCategoryContainer();
 
+        if(e.currentTarget.id==2) {
+            videoFlag =false;
+            if(contentSwiper.destroyed){
+                contentSwiper = new Swiper(".contentSwiper", {
+                    slidesPerView: 3,// 1行に表示するスライド数を3に設定
+                    centeredSlides: false,
+                    grid: {
+                        rows: 2,//縦に並べる数（2行に表示）
+                    },
+                    spaceBetween: 30, // 各スライド間のス��ース（例: 30px）
+                    // ページネーション
+                    pagination: {
+                        el: ".content-pagination", // ここが同じだと最初の設定が上書きされてしまう
+                        clickable: true,
+                    },
+                });
+            }
+          ShowLabContents();//工学部動画表示
+        }else{
+            contentSwiper.destroy(true, true);
+            videoFlag =true;
+            ShowVideoContents();//ドローン動画表示
 
-        const selectedData = testArray.find(data => data.id == e.currentTarget.id);
-        // ContentsWrapperにコンテンツを追加
-        for (let j=0;j<selectedData["url"].length;j++){
-            let newSlide = document.createElement("div");
-            newSlide.classList.add("swiper-slide");
-            newSlide.innerHTML =
-                `<iframe width="100%" height="100%" src="${selectedData["url"][j]}"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>`
-            ContentsWrapper.appendChild(newSlide);
+            // チャプターボタンにイベントを設定
+            SetupChapterButton(BtnChapter1, 10);
+            SetupChapterButton(BtnChapter2, 15);
+            SetupChapterButton(BtnChapter3, 20);
         }
 
         const img = e.currentTarget.closest(".category-slide").querySelector("img");
@@ -118,13 +114,7 @@ for (let i = 0; i < CategorySlide.length; i++) {
         ImgSizeChangeAnimation(slideRect,animImage,animText,img,text);
 
         setTimeout(function(){
-
             ShowContents(animText);
-
-            // Swiperが動作している場合、ここで更新
-            if (typeof categorySwiper !== "undefined") {
-                contentSwiper.update();
-            }
         },1500);
     });
 }
@@ -136,11 +126,14 @@ CloseContentsBtn.addEventListener("click", function () {
     slide.style.opacity = '1'; // 透明にする
 
     setTimeout(function() {
-        DeleteContents();
-        HideContents();
-        CategoryContainer.style.display = "flex";
-        contentSwiper.slideTo(0, 0, false); // スライドを初期位置に戻す（アニメーションなし）
+        HideContentContainer();
+        ShowCategoryContainer();
         slide.style.left = '100%'; // 右端に移動
+        if (videoFlag) {
+            HideVideoContents();
+        }else{
+            HideLabContents();
+        }
     },1000);
 
     // さらに1秒後にスライドを非表示に戻す
@@ -150,8 +143,13 @@ CloseContentsBtn.addEventListener("click", function () {
     }, 2000); // 2秒後にクラスを削除して元の状態に戻す
 });
 
+// カテゴリースライド表示
+function ShowCategoryContainer(){
+    CategoryContainer.style.display = "flex";
+}
+
 // カテゴリースライド非表示
-function HideSlide(){
+function HideCategoryContainer(){
     CategoryContainer.style.display = "none";
 }
 
@@ -194,15 +192,9 @@ function ImgSizeChangeAnimation(slideRect,animImage,animText,img,text){
 
 }
 
-// コンテンツを削除
-function DeleteContents(){
-    while (ContentsWrapper.firstChild) {
-        ContentsWrapper.removeChild(ContentsWrapper.firstChild);
-    }
-}
 
 // コンテンツ非表示
-function HideContents(){
+function HideContentContainer(){
     ContentsContainer.classList.add("hidden");
     CloseContentsBtn.style.display = "none";
     CategoryTitle.style.display = "none";
@@ -217,3 +209,66 @@ function ShowContents(text){
     CategoryTitle.innerText = text.innerText;
 }
 
+// 工学部動画表示
+function ShowLabContents(){
+    LabContainer.classList.remove("hidden");
+    LabContainer.classList.add("flex");
+}
+
+// 工学部動画非表示
+function HideLabContents(){
+    LabContainer.classList.add("hidden");
+    LabContainer.classList.remove("flex");
+}
+
+for (let i = 0; i < videos.length; i++) {
+    videos[i].addEventListener("play", async function () {
+        // フルスクリーンモードにする
+        if (videos[i].requestFullscreen) {
+            await videos[i].requestFullscreen();
+        }
+    });
+
+// 動画の再生が終了したらフルスクリーンを終了
+    videos[i].addEventListener("ended", function () {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    });
+}
+
+
+// ドローン動画表示
+function ShowVideoContents(){
+    VideoContainer.classList.remove("hidden");
+    VideoContainer.classList.add("flex");
+}
+
+// ドローン動画非表示
+function HideVideoContents(){
+    VideoContainer.classList.add("hidden");
+    VideoContainer.classList.remove("flex");
+}
+
+//ドローン動画 チャプター時間設定
+function SetupChapterButton(button, time) {
+    button.addEventListener("click", async function () {
+        // 再生位置を設定
+        VideoElement.currentTime = time;
+
+        // フルスクリーンにする
+        if (VideoElement.requestFullscreen) {
+            await VideoElement.requestFullscreen();
+        }
+
+        // 動画を再生
+        VideoElement.play();
+    });
+}
+
+// ドローン動画の再生が終了したらフルスクリーンを終了
+VideoElement.addEventListener("ended", function () {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
+});

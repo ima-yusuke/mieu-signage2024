@@ -67,10 +67,34 @@
 
 {{--各コンテンツ--}}
 <section id="contents_container" class="hidden justify-center items-center h-full w-full py-20">
-    <div class="swiper contentSwiper">
-        <div class="swiper-wrapper" id="swiper_wrapper"></div>
+
+    {{--工学部コンテンツ--}}
+    <div class="swiper contentSwiper hidden" id="lab_container">
+        <div class="swiper-wrapper">
+           <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+            <x-lab-video src="video-01.mp4" />
+        </div>
         <div class="swiper-pagination content-pagination" style="position:fixed;bottom:2%;"></div>
     </div>
+
+    {{--ビデオ（ドローン）--}}
+    <article class="hidden justify-center items-center h-full min-w-full" id="video_container">
+        <video id="myVideo" class="w-[40%] max-h-[70dvh]" controls>
+            <source src="{{asset("storage/video/video-01.mp4")}}" type="video/mp4">
+        </video>
+        <aside class="flex flex-col justify-center items-center gap-6">
+            <x-chapter-btn id="chapter1"></x-chapter-btn>
+            <x-chapter-btn id="chapter2"></x-chapter-btn>
+            <x-chapter-btn id="chapter3"></x-chapter-btn>
+        </aside>
+    </article>
+
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
