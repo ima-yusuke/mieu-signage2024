@@ -28,7 +28,7 @@
     <h1 class="text-2xl text-white font-bold absolute left-[4%] top-1/2 transform -translate-y-1/2">三重大学紹介</h1>
     <aside class="flex items-center gap-4 absolute right-[2%] top-1/2 transform -translate-y-1/2">
         <div class="btn-wrap" id="btn1">
-            <a class="btn btn-switch"><span>全画面4</span></a>
+            <a class="btn btn-switch"><span>全画面</span></a>
         </div>
         <div class="btn-wrap hidden" id="btn2">
             <a class="btn btn-switch"><span>全画面解除</span></a>
