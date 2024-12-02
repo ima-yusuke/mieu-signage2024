@@ -250,6 +250,14 @@ function HideVideoContents(){
     VideoContainer.classList.remove("flex");
 }
 
+// ドローン動画の再生が開始したらフルスクリーンにする
+VideoElement.addEventListener("play", async function () {
+    // フルスクリーンモードにする
+    if (VideoElement.requestFullscreen) {
+        await VideoElement.requestFullscreen();
+    }
+});
+
 //ドローン動画 チャプター時間設定
 function SetupChapterButton(button, time) {
     button.addEventListener("click", async function () {

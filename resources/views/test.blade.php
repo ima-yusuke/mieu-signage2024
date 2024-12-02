@@ -84,11 +84,11 @@
     </div>
 
     {{--ビデオ（ドローン）--}}
-    <article class="hidden justify-center items-center h-full min-w-full" id="video_container">
-        <video id="myVideo" class="w-[40%] max-h-[70dvh]" controls>
-            <source src="{{asset("storage/video/video-01.mp4")}}" type="video/mp4">
+    <article class="hidden flex-col justify-center items-center gap-8 h-full min-w-full" id="video_container">
+        <video id="myVideo" class="w-[70%] max-h-[70dvh]" controls>
+            <source src="{{asset("storage/video/drone.mp4")}}" type="video/mp4">
         </video>
-        <aside class="flex flex-col justify-center items-center gap-6">
+        <aside class="flex justify-center items-center gap-6">
             <x-chapter-btn id="chapter1"></x-chapter-btn>
             <x-chapter-btn id="chapter2"></x-chapter-btn>
             <x-chapter-btn id="chapter3"></x-chapter-btn>
