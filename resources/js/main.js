@@ -22,6 +22,7 @@ const BtnChapter3 = document.getElementById("chapter3");
 const LabContainer = document.getElementById("lab_container");
 let videos =document.getElementsByClassName("video");
 
+
 let videoFlag = false;
 
 // 遷移アニメーション
@@ -35,7 +36,7 @@ const slide = document.getElementById('slide');
 const categorySwiper = new Swiper('.categorySwiper', {
     effect: 'coverflow', // スライダーに「カバーフロー」効果を適用します。中央のスライドが拡大され、3D的に表現されます。
     grabCursor: true,    // スライダー上でマウスカーソルが「掴む」形状になるように設定し、直感的なインターフェイスを提供します。
-    centeredSlides: true, // スライダーを中央配置します。中央のスライドが常にビューポートの中央に表示されます。
+    centeredSlides: false, // スライダーを中央配置します。中央のスライドが常にビューポートの中央に表示されます。
     slidesPerView: 3,    // 画面上に同時に表示するスライドの数を指定します。この場合は「3枚」が表示されます。
     loop: true,          // スライドをループさせます。最後のスライドまで到達したら最初のスライドに戻ります。
     coverflowEffect: {   // カバーフロー効果の詳細設定を行うオプションです。
@@ -65,6 +66,9 @@ let contentSwiper = new Swiper(".contentSwiper", {
         clickable: true,
     },
 });
+
+let currentSlideIndex = contentSwiper.activeIndex;
+
 
 for (let i = 0; i < CategorySlide.length; i++) {
     CategorySlide[i].addEventListener("click", function (e) {
@@ -134,6 +138,12 @@ CloseContentsBtn.addEventListener("click", function () {
         }else{
             HideLabContents();
         }
+
+        for (let i = 0; i < videos.length; i++) {
+            videos[i].pause();
+        }
+
+        VideoElement.pause();
     },1000);
 
     // さらに1秒後にスライドを非表示に戻す
@@ -286,3 +296,22 @@ VideoElement.addEventListener("ended", function () {
         document.exitFullscreen();
     }
 });
+
+let thumbnail = document.getElementsByClassName('thumbnail');
+for (let i = 0; i < thumbnail.length; i++) {
+    thumbnail[i].addEventListener('click', function () {
+        currentSlideIndex = contentSwiper.activeIndex;
+        thumbnail[i].style.display = 'none';
+
+        // 動画要素を取得して再生する
+        const video = thumbnail[i].nextElementSibling;
+        video.style.display = 'block'; // 動画を表示
+        video.play(); // 再生開始
+        video.addEventListener('fullscreenchange', () => handleFullscreenExit(video));
+    });
+}
+function handleFullscreenExit(video) {
+    if (!document.fullscreenElement) {
+        contentSwiper.slideTo(currentSlideIndex, 0); // 変更なしの位置に戻す
+    }
+}
