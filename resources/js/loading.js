@@ -26,11 +26,11 @@ async function init() {
 
     // ローディング画面を非表示
     LoadingContainer.style.display = 'none';
-    // CategoryContainer.classList.remove('hidden');
 
     // 次のフレームでアニメーションを開始
     requestAnimationFrame(() => {
         CategoryContainer.classList.add('fade-in', 'show');
+        CategoryContainer.classList.remove('fade-in','show');
     });
 }
 
