@@ -1,7 +1,7 @@
 <div class="swiper-slide relative overflow-hidden">
     <!-- サムネイル -->
     <img
-        src="{{ asset('storage/img/takagi.jpeg') }}"
+        src="{{ asset("storage/img/$img") }}"
         alt="Video Thumbnail"
         class="absolute w-full cursor-pointer z-10 thumbnail"
     >

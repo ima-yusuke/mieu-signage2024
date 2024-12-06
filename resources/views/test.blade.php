@@ -61,9 +61,9 @@
             <div class="swiper-wrapper">
                 <!-- Swiper Slides -->
                 <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
-                <x-category-slide id="2" name="工学部研究室取材" url="storage/img/lab-02.jpg" />
+                <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
                 <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
-                <x-category-slide id="2" name="工学部研究室取材" url="storage/img/lab-02.jpg" />
+                <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
             </div>
         </div>
 
@@ -85,14 +85,14 @@
         {{--工学部コンテンツ--}}
         <div class="swiper contentSwiper hidden" id="lab_container">
             <div class="swiper-wrapper">
-               <x-lab-video  src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
-                <x-lab-video src="video-01.mp4" />
+                <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>
+                <x-lab-video src="test-video.MOV" img="thumbnail-02.jpg"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-03.jpg"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-04.png"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-05.png"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-06.jpg"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-07.jpg"/>
+                <x-lab-video src="video-01.mp4" img="thumbnail-08.jpg"/>
             </div>
             <div class="swiper-pagination content-pagination" style="position:fixed;bottom:2%;"></div>
         </div>

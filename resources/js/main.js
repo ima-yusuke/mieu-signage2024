@@ -21,7 +21,9 @@ const BtnChapter3 = document.getElementById("chapter3");
 // コンテンツ＿工学部
 const LabContainer = document.getElementById("lab_container");
 let videos =document.getElementsByClassName("video");
-
+let thumbnail = document.getElementsByClassName('thumbnail');
+let imgIdx = 0;
+let thumbnailFlag = false;
 
 let videoFlag = false;
 
@@ -207,8 +209,6 @@ async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text)
     });
 }
 
-
-
 // コンテンツ非表示
 function HideContentContainer(){
     ContentsContainer.classList.add("hidden");
@@ -237,19 +237,64 @@ function HideLabContents(){
     LabContainer.classList.remove("flex");
 }
 
-for (let i = 0; i < videos.length; i++) {
-    videos[i].addEventListener("play", async function () {
-        // フルスクリーンモードにする
-        if (videos[i].requestFullscreen) {
-            await videos[i].requestFullscreen();
-        }
+// 工学部動画のサムネイルをクリックしたときの処理
+for (let i = 0; i < thumbnail.length; i++) {
+    thumbnail[i].addEventListener('click', function () {
+        currentSlideIndex = contentSwiper.activeIndex;
+        thumbnail[i].style.display = 'none';
+        imgIdx = i;
+        thumbnailFlag = true;
+        const video = thumbnail[i].nextElementSibling;
+        video.style.display = 'block'; //動画を表示
+        startFullscreenAndObserve(video);
     });
+}
 
-// 動画の再生が終了したらフルスクリーンを終了
-    videos[i].addEventListener("ended", function () {
-        if (document.fullscreenElement) {
-            document.exitFullscreen();
-        }
+async function startFullscreenAndObserve(videoElement) {
+    try {
+        // フルスクリーンを開始
+        await videoElement.requestFullscreen();
+
+        // フルスクリーンの切り替え完了を待つ
+        await waitForFullscreen(videoElement);
+
+        // 再生開始
+        await videoElement.play();
+
+        // サイズ変更を監視する ResizeObserver をセットアップ
+         const resizeObserver = new ResizeObserver(() => {
+             if (!document.fullscreenElement) {
+                 videoElement.pause(); // 動画を停止
+                 thumbnail[imgIdx].style.display = 'block';
+                 thumbnailFlag = false;
+                 contentSwiper.slideTo(currentSlideIndex, 0); // 変更なしの位置に戻す
+                 resizeObserver.disconnect(); // ResizeObserver を停止
+             }
+        });
+        resizeObserver.observe(videoElement);
+
+        // フルスクリーン終了時の処理
+        document.addEventListener("fullscreenchange", () => {
+            videoElement.pause(); // 動画を停止
+            thumbnail[imgIdx].style.display = 'block';
+            thumbnailFlag = false;
+            contentSwiper.slideTo(currentSlideIndex, 0); // 変更なしの位置に戻す
+            resizeObserver.disconnect(); // ResizeObserver を停止
+        });
+    } catch (error) {
+        console.error("フルスクリーンモードの開始に失敗しました:", error);
+    }
+}
+
+function waitForFullscreen(videoElement) {
+    return new Promise((resolve) => {
+        const onFullscreenChange = () => {
+            if (document.fullscreenElement === videoElement) {
+                document.removeEventListener("fullscreenchange", onFullscreenChange);
+                resolve(); // フルスクリーン化完了を通知
+            }
+        };
+        document.addEventListener("fullscreenchange", onFullscreenChange);
     });
 }
 
@@ -297,21 +342,4 @@ VideoElement.addEventListener("ended", function () {
     }
 });
 
-let thumbnail = document.getElementsByClassName('thumbnail');
-for (let i = 0; i < thumbnail.length; i++) {
-    thumbnail[i].addEventListener('click', function () {
-        currentSlideIndex = contentSwiper.activeIndex;
-        thumbnail[i].style.display = 'none';
 
-        // 動画要素を取得して再生する
-        const video = thumbnail[i].nextElementSibling;
-        video.style.display = 'block'; // 動画を表示
-        video.play(); // 再生開始
-        video.addEventListener('fullscreenchange', () => handleFullscreenExit(video));
-    });
-}
-function handleFullscreenExit(video) {
-    if (!document.fullscreenElement) {
-        contentSwiper.slideTo(currentSlideIndex, 0); // 変更なしの位置に戻す
-    }
-}
