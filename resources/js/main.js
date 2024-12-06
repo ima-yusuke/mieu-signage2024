@@ -1,8 +1,6 @@
-//Import Swiper and required CSS
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import 'swiper/css/pagination';
-//cssをimport
 
 // カテゴリー
 const CategoryContainer  = document.getElementById("category_container");
@@ -297,7 +295,6 @@ function waitForFullscreen(videoElement) {
         document.addEventListener("fullscreenchange", onFullscreenChange);
     });
 }
-
 
 // ドローン動画表示
 function ShowVideoContents(){

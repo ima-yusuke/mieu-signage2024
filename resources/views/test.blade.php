@@ -35,17 +35,18 @@
         <h1 class="pt-10 text-white text-4xl text-center">システム準備中</h1>
     </section>
 
+    {{--パーティクル--}}
     <div id="tsparticles"></div>
+
+    {{--閉じるボタンクリック時のアニメーションスライド--}}
     <div id="slide" class="slide"></div>
+
     {{--ヘッダー--}}
     <div class="fixed top-0 w-full flex items-center justify-center min-h-[8dvh]">
         <h1 class="text-2xl text-white font-bold absolute left-[4%] top-1/2 transform -translate-y-1/2">三重大学紹介</h1>
         <aside class="flex items-center gap-4 absolute right-[2%] top-1/2 transform -translate-y-1/2">
             <div class="btn-wrap" id="btn1">
                 <a class="btn btn-switch"><span>全画面</span></a>
-            </div>
-            <div class="btn-wrap hidden" id="btn2">
-                <a class="btn btn-switch"><span>全画面解除</span></a>
             </div>
             <div class="btn-wrap hidden" id="close_contents_btn">
                 <a class="btn btn-switch2"><span>閉じる</span></a>
@@ -54,7 +55,7 @@
         <p id="category" class="hidden text-xl text-white font-bold border-b border-solid border-white"></p>
     </div>
 
-    <!-- 学部メニュー -->
+    <!--メニュー-->
     <section class="flex justify-center items-center h-full w-full fade-in" id="category_container">
         {{--スライド--}}
         <div class="swiper categorySwiper">
@@ -110,9 +111,6 @@
         </article>
 
     </section>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-big-circles@3/tsparticles.preset.bigCircles.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@3/tsparticles.preset.links.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-sea-anemone@3/tsparticles.preset.seaAnemone.bundle.min.js"></script>
 </body>
 </html>
