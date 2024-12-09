@@ -10,12 +10,14 @@ const CategorySlide = document.getElementsByClassName("category-slide");
 const ContentsContainer = document.getElementById("contents_container");
 const CategoryTitle = document.getElementById("category");
 const CloseContentsBtn = document.getElementById("close_contents_btn");
+
 // コンテンツ_ドローン
 const VideoContainer = document.getElementById("video_container");
 const VideoElement = document.getElementById("myVideo");
 const BtnChapter1 = document.getElementById("chapter1");
 const BtnChapter2 = document.getElementById("chapter2");
 const BtnChapter3 = document.getElementById("chapter3");
+
 // コンテンツ＿工学部
 const LabContainer = document.getElementById("lab_container");
 let videos =document.getElementsByClassName("video");
@@ -23,14 +25,13 @@ let thumbnail = document.getElementsByClassName('thumbnail');
 let imgIdx = 0;
 let thumbnailFlag = false;
 
-let videoFlag = false;
-
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
+const AnimationSlide = document.getElementById('slide');
 const ImgElement = AnimationContainer.querySelector("img");  // imgタグを取得
 const TextElement = AnimationContainer.querySelector("p");  // pタグを取得
 
-const slide = document.getElementById('slide');
+let videoFlag = false;
 
 // Initialize Swiper with configuration
 const categorySwiper = new Swiper('.categorySwiper', {
@@ -115,14 +116,14 @@ for (let i = 0; i < CategorySlide.length; i++) {
 
 // コンテンツを閉じるボタンをクリック時の処理
 CloseContentsBtn.addEventListener("click", async function () {
-    slide.style.left = '0'; // 左端に移動
-    slide.style.opacity = '1'; // 表示
+    AnimationSlide.style.left = '0'; // 左端に移動
+    AnimationSlide.style.opacity = '1'; // 表示
 
     await Sleep(1000); // 1秒待機
 
     HideContentContainer();
     ShowCategoryContainer();
-    slide.style.left = '100%'; // 右端に移動
+    AnimationSlide.style.left = '100%'; // 右端に移動
 
     if (videoFlag) {
         HideVideoContents();
@@ -137,8 +138,8 @@ CloseContentsBtn.addEventListener("click", async function () {
 
     await Sleep(1000); // さらに1秒待機
 
-    slide.style.opacity = '0'; // 透明にする
-    slide.style.left = '-100%'; // 左端の外に移動
+    AnimationSlide.style.opacity = '0'; // 透明にする
+    AnimationSlide.style.left = '-100%'; // 左端の外に移動
 });
 
 // カテゴリースライド表示
@@ -175,7 +176,8 @@ async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text)
 
     let sizeBigBtn = document.getElementById('btn1');
 
-    if (sizeBigBtn.style.display !== 'none') {sizeBigBtn.classList.add('btn-fade-out');
+    if (sizeBigBtn.style.display !== 'none') {
+        sizeBigBtn.classList.add('btn-fade-out');
     }
 
     // アニメーション完了後に非表示にする
@@ -247,7 +249,7 @@ async function startFullscreenAndObserve(videoElement) {
         await videoElement.play();
 
         // サイズ変更を監視する ResizeObserver をセットアップ
-         const resizeObserver = new ResizeObserver(() => {
+        const resizeObserver = new ResizeObserver(() => {
              if (!document.fullscreenElement) {
                  videoElement.pause(); // 動画を停止
                  thumbnail[imgIdx].style.display = 'block';
