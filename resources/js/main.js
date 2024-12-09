@@ -53,25 +53,28 @@ const categorySwiper = new Swiper('.categorySwiper', {
     },
 });
 
-let contentSwiper = new Swiper(".contentSwiper", {
-    slidesPerView: 3,// 1行に表示するスライド数を3に設定
-    centeredSlides: false,
-    grid: {
-        rows: 2,//縦に並べる数（2行に表示）
-    },
-    spaceBetween: 30, // 各スライド間のスペース（例: 30px）
-    // ページネーション
-    pagination: {
-        el: ".content-pagination", // ここが同じだと最初の設定が上書きされてしまう
-        clickable: true,
-    },
-});
+// Swiperの初期化を関数化
+function initializeContentSwiper() {
+    return new Swiper(".contentSwiper", {
+        slidesPerView: 3, // 1行に表示するスライド数
+        centeredSlides: false,
+        grid: {
+            rows: 2, // 縦に並べる数
+        },
+        spaceBetween: 30, // 各スライド間のスペース
+        pagination: {
+            el: ".content-pagination", // ページネーションの要素
+            clickable: true,
+        },
+    });
+}
 
+let contentSwiper = initializeContentSwiper();
 let currentSlideIndex = contentSwiper.activeIndex;
 
-
+// カテゴリースライドをクリックしたときの処理
 for (let i = 0; i < CategorySlide.length; i++) {
-    CategorySlide[i].addEventListener("click", function (e) {
+    CategorySlide[i].addEventListener("click", async function (e) {
         // クリックされたスライドのサイズと位置を取得
         const slideImage = e.currentTarget.querySelector("img");
         const slideRect = slideImage.getBoundingClientRect();
@@ -84,20 +87,8 @@ for (let i = 0; i < CategorySlide.length; i++) {
 
         if(e.currentTarget.id==2) {
             videoFlag =false;
-            if(contentSwiper.destroyed){
-                contentSwiper = new Swiper(".contentSwiper", {
-                    slidesPerView: 3,// 1行に表示するスライド数を3に設定
-                    centeredSlides: false,
-                    grid: {
-                        rows: 2,//縦に並べる数（2行に表示）
-                    },
-                    spaceBetween: 30, // 各スライド間のス��ース（例: 30px）
-                    // ページネーション
-                    pagination: {
-                        el: ".content-pagination", // ここが同じだと最初の設定が上書きされてしまう
-                        clickable: true,
-                    },
-                });
+            if (contentSwiper.destroyed) {
+                contentSwiper = initializeContentSwiper(); // Swiper再生成
             }
           ShowLabContents();//工学部動画表示
         }else{
@@ -117,40 +108,37 @@ for (let i = 0; i < CategorySlide.length; i++) {
         //画像サイズ変更アニメーション
         ImgSizeChangeAnimation(slideRect,animImage,animText,img,text);
 
-        setTimeout(function(){
-            ShowContents(animText);
-        },1500);
+        await Sleep(1500); // 1.5秒待機
+        ShowContents(animText); // コンテンツを表示
     });
 }
 
 // コンテンツを閉じるボタンをクリック時の処理
-CloseContentsBtn.addEventListener("click", function () {
-
+CloseContentsBtn.addEventListener("click", async function () {
     slide.style.left = '0'; // 左端に移動
-    slide.style.opacity = '1'; // 透明にする
+    slide.style.opacity = '1'; // 表示
 
-    setTimeout(function() {
-        HideContentContainer();
-        ShowCategoryContainer();
-        slide.style.left = '100%'; // 右端に移動
-        if (videoFlag) {
-            HideVideoContents();
-        }else{
-            HideLabContents();
-        }
+    await Sleep(1000); // 1秒待機
 
-        for (let i = 0; i < videos.length; i++) {
-            videos[i].pause();
-        }
+    HideContentContainer();
+    ShowCategoryContainer();
+    slide.style.left = '100%'; // 右端に移動
 
-        VideoElement.pause();
-    },1000);
+    if (videoFlag) {
+        HideVideoContents();
+    } else {
+        HideLabContents();
+    }
 
-    // さらに1秒後にスライドを非表示に戻す
-    setTimeout(function() {
-        slide.style.opacity = '0'; // 透明にする
-        slide.style.left = '-100%'; // 左端の外に移動
-    }, 2000); // 2秒後にクラスを削除して元の状態に戻す
+    for (let i = 0; i < videos.length; i++) {
+        videos[i].pause();
+    }
+    VideoElement.pause();
+
+    await Sleep(1000); // さらに1秒待機
+
+    slide.style.opacity = '0'; // 透明にする
+    slide.style.left = '-100%'; // 左端の外に移動
 });
 
 // カテゴリースライド表示
@@ -186,12 +174,8 @@ async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text)
     animText.classList.add("move-up-fade-out");
 
     let sizeBigBtn = document.getElementById('btn1');
-    let sizeSmallBtn = document.getElementById('btn2');
 
-    if (sizeBigBtn.style.display === 'none') {
-        sizeSmallBtn.classList.add('btn-fade-out');
-    } else {
-        sizeBigBtn.classList.add('btn-fade-out');
+    if (sizeBigBtn.style.display !== 'none') {sizeBigBtn.classList.add('btn-fade-out');
     }
 
     // アニメーション完了後に非表示にする
@@ -199,12 +183,15 @@ async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text)
         AnimationContainer.classList.add("hidden");
         animImage.classList.remove("zoom-fade-out"); // クラスをリセット
 
-        if (sizeBigBtn.style.display === 'none') {
-            sizeSmallBtn.classList.remove('btn-fade-out');
-        } else {
+        if (sizeBigBtn.style.display !== 'none') {
             sizeBigBtn.classList.remove('btn-fade-out');
         }
     });
+}
+
+// 一定時間待機する関数（ カテゴリー画像サイズ変更アニメーション用）setTimeoutで指定時間後にresolve()を呼び出す。
+function Sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // コンテンツ非表示
