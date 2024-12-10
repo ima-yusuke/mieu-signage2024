@@ -2,7 +2,7 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import 'swiper/css/pagination';
 
-// カテゴリー
+// カテゴリー（トップ画面メニュー）
 const CategoryContainer  = document.getElementById("category_container");
 const CategorySlide = document.getElementsByClassName("category-slide");
 
@@ -28,8 +28,8 @@ let currentContainer = null;
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
 const AnimationSlide = document.getElementById('slide');
-const ImgElement = AnimationContainer.querySelector("img");  // imgタグを取得
-const TextElement = AnimationContainer.querySelector("p");  // pタグを取得
+const ImgElement = AnimationContainer.querySelector("img");
+const TextElement = AnimationContainer.querySelector("p");
 
 let videoFlag = false;
 
@@ -49,7 +49,7 @@ const categorySwiper = new Swiper('.categorySwiper', {
     },
 });
 
-// 工学部Swiperの初期化を関数化
+// 各学部Swiperの初期化を関数化
 function initializeContentSwiper(className) {
     return new Swiper(className, {
         slidesPerView: 3, // 1行に表示するスライド数
@@ -78,6 +78,7 @@ for (let i = 0; i < CategorySlide.length; i++) {
         HideCategoryContainer();
 
         if(e.currentTarget.id!=1) {
+            //学部動画表示
             videoFlag =false;
             if (!contentSwiper.destroyed) {
                 contentSwiper.destroy(true, true); // 破棄時にHTMLやCSSをリセット
@@ -86,12 +87,12 @@ for (let i = 0; i < CategorySlide.length; i++) {
                 contentSwiper = initializeContentSwiper(`.swiper-${e.currentTarget.id}`); // Swiper再生成
             }
             currentContainer = document.getElementById(`container_${e.currentTarget.id}`);
-            ShowContentVideos(currentContainer);//工学部動画表示
+            ShowContentVideos(currentContainer);
         }else{
+            //ドローン動画表示
             contentSwiper.destroy(true, true);
             videoFlag = true;
-            ShowVideoContents();//ドローン動画表示
-            console.log("ssssss")
+            ShowDroneContainer();
             // チャプターボタンにイベントを設定
             SetupChapterButton(BtnChapter1, 10);
             SetupChapterButton(BtnChapter2, 15);
@@ -105,7 +106,7 @@ for (let i = 0; i < CategorySlide.length; i++) {
         ImgSizeChangeAnimation(slideRect,animImage,animText,img,text);
 
         await Sleep(1500); // 1.5秒待機
-        ShowContents(animText); // コンテンツを表示
+        ShowContentContainer(animText); // コンテンツを表示
     });
 }
 
@@ -121,15 +122,14 @@ CloseContentsBtn.addEventListener("click", async function () {
     AnimationSlide.style.left = '100%'; // 右端に移動
 
     if (videoFlag) {
-        HideVideoContents();
+        HideDroneContainer();
+        VideoElement.pause();
     } else {
         HideContentVideos(currentContainer);
+        for (let i = 0; i < videos.length; i++) {
+            videos[i].pause();
+        }
     }
-
-    for (let i = 0; i < videos.length; i++) {
-        videos[i].pause();
-    }
-    VideoElement.pause();
 
     await Sleep(1000); // さらに1秒待機
 
@@ -156,16 +156,16 @@ async function ImgSizeChangeAnimation(slideRect, animImage, animText, img, text)
     AnimationContainer.classList.add("flex");
     AnimationContainer.classList.remove("hidden");
 
-    // 画像の読み込みが完了するまで待機
+    //画像の読み込みが完了するまで待機
     await new Promise((resolve) => {
         ImgElement.src = img.src;
         TextElement.innerText = text.innerText; // テキストの設定
         ImgElement.onload = resolve; // 画像の読み込み完了後にresolveを呼び出す
     });
 
-    // この後のコードは、上記のPromiseがresolveされるまで実行されません。
+    //この後のコードは、上記のPromiseがresolveされるまで実行されません。
 
-    // アニメーションを開始する
+    //アニメーションを開始する
     animImage.classList.add("zoom-fade-out");
     animText.classList.add("move-up-fade-out");
 
@@ -199,7 +199,7 @@ function HideContentContainer(){
 }
 
 // コンテンツ表示
-function ShowContents(text){
+function ShowContentContainer(text){
     ContentsContainer.classList.remove("hidden");
     ContentsContainer.classList.add("flex");
     CloseContentsBtn.style.display = "block";
@@ -283,13 +283,13 @@ function waitForFullscreen(videoElement) {
 }
 
 // ドローン動画表示
-function ShowVideoContents(){
+function ShowDroneContainer(){
     VideoContainer.classList.remove("hidden");
     VideoContainer.classList.add("flex");
 }
 
 // ドローン動画非表示
-function HideVideoContents(){
+function HideDroneContainer(){
     VideoContainer.classList.add("hidden");
     VideoContainer.classList.remove("flex");
 }

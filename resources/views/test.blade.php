@@ -63,14 +63,14 @@
                 <!-- Swiper Slides -->
                 <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
                 <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
-                <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
-                <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
-{{--                <x-category-slide id="3" name="教育学部" url="storage/img/lab-03.jpg" />--}}
-{{--                <x-category-slide id="4" name="人文学部" url="storage/img/lab-04.jpg" />--}}
-{{--                <x-category-slide id="5" name="医学系研究科" url="storage/img/lab-05.jpg" />--}}
-{{--                <x-category-slide id="6" name="生物資源学研究科" url="storage/img/lab-06.jpg" />--}}
-{{--                <x-category-slide id="7" name="地域イノベーション学研究科" url="storage/img/lab-07.jpg" />--}}
-
+                    {{--サイエンスフェスティバル用--}}
+{{--                <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />--}}
+{{--                <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />--}}
+                <x-category-slide id="3" name="教育学部" url="storage/img/lab-03.jpg" />
+                <x-category-slide id="4" name="人文学部" url="storage/img/lab-04.jpg" />
+                <x-category-slide id="5" name="医学系研究科" url="storage/img/lab-05.jpg" />
+                <x-category-slide id="6" name="生物資源学研究科" url="storage/img/lab-06.jpg" />
+                <x-category-slide id="7" name="地域イノベーション学研究科" url="storage/img/lab-07.jpg" />
             </div>
         </div>
     </section>
@@ -105,6 +105,38 @@
             <div class="swiper-wrapper">
                 <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>
                 <x-lab-video src="test-video.MOV" img="thumbnail-02.jpg"/>
+            </div>
+        </div>
+
+        {{--人文学部コンテンツ--}}
+        <div class="hidden swiper swiper-4" id="container_4">
+            <div class="swiper-wrapper">
+                <x-lab-video  src="test-video.MOV" img="thumbnail-03.jpg"/>
+                <x-lab-video src="test-video.MOV" img="thumbnail-04.png"/>
+            </div>
+        </div>
+
+        {{--医学系研究科コンテンツ--}}
+        <div class="hidden swiper swiper-5" id="container_5">
+            <div class="swiper-wrapper">
+                <x-lab-video  src="test-video.MOV" img="thumbnail-05.png"/>
+                <x-lab-video src="test-video.MOV" img="thumbnail-06.jpg"/>
+            </div>
+        </div>
+
+        {{--生物資源学研究科コンテンツ--}}
+        <div class="hidden swiper swiper-6" id="container_6">
+            <div class="swiper-wrapper">
+                <x-lab-video  src="test-video.MOV" img="thumbnail-07.jpg"/>
+                <x-lab-video src="test-video.MOV" img="thumbnail-08.jpg"/>
+            </div>
+        </div>
+
+        {{--地域イノベーション学研究科コンテンツ--}}
+        <div class="hidden swiper swiper-7" id="container_7">
+            <div class="swiper-wrapper">
+                <x-lab-video  src="test-video.MOV" img="lab-01.jpg"/>
+                <x-lab-video src="test-video.MOV" img="lab-02.jpg"/>
             </div>
         </div>
 
