@@ -65,11 +65,14 @@
                 <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
                 <x-category-slide id="1" name="ドローン映像" url="storage/img/lab-01.jpg" />
                 <x-category-slide id="2" name="工学部" url="storage/img/lab-02.jpg" />
+{{--                <x-category-slide id="3" name="教育学部" url="storage/img/lab-03.jpg" />--}}
+{{--                <x-category-slide id="4" name="人文学部" url="storage/img/lab-04.jpg" />--}}
+{{--                <x-category-slide id="5" name="医学系研究科" url="storage/img/lab-05.jpg" />--}}
+{{--                <x-category-slide id="6" name="生物資源学研究科" url="storage/img/lab-06.jpg" />--}}
+{{--                <x-category-slide id="7" name="地域イノベーション学研究科" url="storage/img/lab-07.jpg" />--}}
+
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="swiper-pagination category-pagination" style="position:fixed;bottom:2%;"></div>
     </section>
 
     {{--画面遷移アニメーション--}}
@@ -84,7 +87,7 @@
     <section id="contents_container" class="hidden justify-center items-center h-full w-full py-20">
 
         {{--工学部コンテンツ--}}
-        <div class="swiper contentSwiper hidden" id="lab_container">
+        <div class="hidden swiper swiper-2" id="container_2">
             <div class="swiper-wrapper">
                 <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>
                 <x-lab-video src="test-video.MOV" img="thumbnail-02.jpg"/>
@@ -95,7 +98,14 @@
                 <x-lab-video src="video-01.mp4" img="thumbnail-07.jpg"/>
                 <x-lab-video src="video-01.mp4" img="thumbnail-08.jpg"/>
             </div>
-            <div class="swiper-pagination content-pagination" style="position:fixed;bottom:2%;"></div>
+        </div>
+
+        {{--教育学部コンテンツ--}}
+        <div class="hidden swiper swiper-3" id="container_3">
+            <div class="swiper-wrapper">
+                <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>
+                <x-lab-video src="test-video.MOV" img="thumbnail-02.jpg"/>
+            </div>
         </div>
 
         {{--ビデオ（ドローン）--}}

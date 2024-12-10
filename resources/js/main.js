@@ -18,12 +18,12 @@ const BtnChapter1 = document.getElementById("chapter1");
 const BtnChapter2 = document.getElementById("chapter2");
 const BtnChapter3 = document.getElementById("chapter3");
 
-// コンテンツ＿工学部
-const LabContainer = document.getElementById("lab_container");
+// コンテンツ＿各学部
 let videos =document.getElementsByClassName("video");
 let thumbnail = document.getElementsByClassName('thumbnail');
 let imgIdx = 0;
 let thumbnailFlag = false;
+let currentContainer = null;
 
 // 遷移アニメーション
 const AnimationContainer = document.getElementById("animation_container");
@@ -47,30 +47,21 @@ const categorySwiper = new Swiper('.categorySwiper', {
         modifier: 1,     // 効果の強さを調整します。数値を大きくするほど効果が強調されます。
         slideShadows: true, // 各スライドに影を追加し、立体感を演出します。
     },
-
-    pagination: {        // ページネーション（スライダーのインジケーター）の設定を行います。
-        el: '.category-pagination', // ページネーションを表示するためのHTML要素を指定します。
-        clickable: true, // ページネーションをクリックすることでスライドを切り替えられるようにします。
-    },
 });
 
-// Swiperの初期化を関数化
-function initializeContentSwiper() {
-    return new Swiper(".contentSwiper", {
+// 工学部Swiperの初期化を関数化
+function initializeContentSwiper(className) {
+    return new Swiper(className, {
         slidesPerView: 3, // 1行に表示するスライド数
         centeredSlides: false,
         grid: {
             rows: 2, // 縦に並べる数
         },
         spaceBetween: 30, // 各スライド間のスペース
-        pagination: {
-            el: ".content-pagination", // ページネーションの要素
-            clickable: true,
-        },
     });
 }
 
-let contentSwiper = initializeContentSwiper();
+let contentSwiper = initializeContentSwiper(".swiper-2");//デフォルト
 let currentSlideIndex = contentSwiper.activeIndex;
 
 // カテゴリースライドをクリックしたときの処理
@@ -86,17 +77,21 @@ for (let i = 0; i < CategorySlide.length; i++) {
         //カテゴリースライド非表示
         HideCategoryContainer();
 
-        if(e.currentTarget.id==2) {
+        if(e.currentTarget.id!=1) {
             videoFlag =false;
-            if (contentSwiper.destroyed) {
-                contentSwiper = initializeContentSwiper(); // Swiper再生成
+            if (!contentSwiper.destroyed) {
+                contentSwiper.destroy(true, true); // 破棄時にHTMLやCSSをリセット
             }
-          ShowLabContents();//工学部動画表示
+            if (contentSwiper.destroyed) {
+                contentSwiper = initializeContentSwiper(`.swiper-${e.currentTarget.id}`); // Swiper再生成
+            }
+            currentContainer = document.getElementById(`container_${e.currentTarget.id}`);
+            ShowContentVideos(currentContainer);//工学部動画表示
         }else{
             contentSwiper.destroy(true, true);
-            videoFlag =true;
+            videoFlag = true;
             ShowVideoContents();//ドローン動画表示
-
+            console.log("ssssss")
             // チャプターボタンにイベントを設定
             SetupChapterButton(BtnChapter1, 10);
             SetupChapterButton(BtnChapter2, 15);
@@ -128,7 +123,7 @@ CloseContentsBtn.addEventListener("click", async function () {
     if (videoFlag) {
         HideVideoContents();
     } else {
-        HideLabContents();
+        HideContentVideos(currentContainer);
     }
 
     for (let i = 0; i < videos.length; i++) {
@@ -212,19 +207,21 @@ function ShowContents(text){
     CategoryTitle.innerText = text.innerText;
 }
 
-// 工学部動画表示
-function ShowLabContents(){
-    LabContainer.classList.remove("hidden");
-    LabContainer.classList.add("flex");
+// 各学部動画表示
+function ShowContentVideos(container){
+    container.classList.remove("hideContainer");
+    container.classList.add("flex");
+    container.classList.add("contentSwiper");
 }
 
-// 工学部動画非表示
-function HideLabContents(){
-    LabContainer.classList.add("hidden");
-    LabContainer.classList.remove("flex");
+// 各学部動画非表示
+function HideContentVideos(container){
+    container.classList.add("hideContainer");
+    container.classList.remove("flex");
+    container.classList.remove("contentSwiper");
 }
 
-// 工学部動画のサムネイルをクリックしたときの処理
+// 各学部動画のサムネイルをクリックしたときの処理
 for (let i = 0; i < thumbnail.length; i++) {
     thumbnail[i].addEventListener('click', function () {
         currentSlideIndex = contentSwiper.activeIndex;
