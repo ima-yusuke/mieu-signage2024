@@ -21,7 +21,7 @@
     @endif
 </head>
 
-<body class="flex justify-center items-center">
+<body class="flex justify-center items-center disable-click">
 
     {{--動画読み込時の表示--}}
     <section id="loading_container" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

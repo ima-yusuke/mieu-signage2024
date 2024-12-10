@@ -94,9 +94,9 @@ for (let i = 0; i < CategorySlide.length; i++) {
             videoFlag = true;
             ShowDroneContainer();
             // チャプターボタンにイベントを設定
-            SetupChapterButton(BtnChapter1, 10);
-            SetupChapterButton(BtnChapter2, 15);
-            SetupChapterButton(BtnChapter3, 20);
+            SetupChapterButton(BtnChapter1, 0);
+            SetupChapterButton(BtnChapter2, 123);
+            SetupChapterButton(BtnChapter3, 252);
         }
 
         const img = e.currentTarget.closest(".category-slide").querySelector("img");

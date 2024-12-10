@@ -31,6 +31,7 @@ async function init() {
     requestAnimationFrame(() => {
         CategoryContainer.classList.add('fade-in', 'show');
         CategoryContainer.classList.remove('fade-in','show');
+        document.body.classList.remove('disable-click');
     });
 }
 
