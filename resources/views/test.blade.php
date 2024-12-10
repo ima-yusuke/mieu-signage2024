@@ -91,18 +91,30 @@
         {{--工学部コンテンツ--}}
         <div class="hidden swiper swiper-2" id="container_2">
             <div class="swiper-wrapper">
-                <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>
-                <x-lab-video src="test-video.MOV" img="thumbnail-02.jpg"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-03.jpg"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-04.png"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-05.png"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-06.jpg"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-07.jpg"/>
-                <x-lab-video src="video-01.mp4" img="thumbnail-08.jpg"/>
+                <x-lab-video  src="test-video.MOV" img="lab-01.png"/>
+                <x-lab-video src="test-video.MOV" img="lab-02.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-03.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-04.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-05.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-06.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-07.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-08.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-09.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-10.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-11.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-12.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-13.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-14.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-16.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-17.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-18.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-19.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-20.png"/>
+                <x-lab-video src="video-01.mp4" img="lab-21.png"/>
             </div>
         </div>
 
-        {{--教育学部コンテンツ--}}
+{{--        教育学部コンテンツ--}}
 {{--        <div class="hidden swiper swiper-3" id="container_3">--}}
 {{--            <div class="swiper-wrapper">--}}
 {{--                <x-lab-video  src="test-video.MOV" img="thumbnail-01.jpeg"/>--}}
@@ -110,7 +122,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-{{--        --}}{{--人文学部コンテンツ--}}
+{{--        人文学部コンテンツ--}}
 {{--        <div class="hidden swiper swiper-4" id="container_4">--}}
 {{--            <div class="swiper-wrapper">--}}
 {{--                <x-lab-video  src="test-video.MOV" img="thumbnail-03.jpg"/>--}}
@@ -118,7 +130,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-{{--        --}}{{--医学系研究科コンテンツ--}}
+{{--        医学系研究科コンテンツ--}}
 {{--        <div class="hidden swiper swiper-5" id="container_5">--}}
 {{--            <div class="swiper-wrapper">--}}
 {{--                <x-lab-video  src="test-video.MOV" img="thumbnail-05.png"/>--}}
@@ -126,7 +138,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-{{--        --}}{{--生物資源学研究科コンテンツ--}}
+{{--        生物資源学研究科コンテンツ--}}
 {{--        <div class="hidden swiper swiper-6" id="container_6">--}}
 {{--            <div class="swiper-wrapper">--}}
 {{--                <x-lab-video  src="test-video.MOV" img="thumbnail-07.jpg"/>--}}
@@ -134,7 +146,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-{{--        --}}{{--地域イノベーション学研究科コンテンツ--}}
+{{--        地域イノベーション学研究科コンテンツ--}}
 {{--        <div class="hidden swiper swiper-7" id="container_7">--}}
 {{--            <div class="swiper-wrapper">--}}
 {{--                <x-lab-video  src="test-video.MOV" img="lab-01.jpg"/>--}}
