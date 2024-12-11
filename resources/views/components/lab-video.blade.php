@@ -3,7 +3,7 @@
     <img
         src="{{ asset("storage/img/$img") }}"
         alt="Video Thumbnail"
-        class="absolute w-full cursor-pointer z-10 thumbnail"
+        class="absolute w-auto h-full cursor-pointer z-10 thumbnail"
     >
     <video
         class="w-full h-full video"

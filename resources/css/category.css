@@ -23,7 +23,7 @@
 }
 
     /*メニュー画像*/
-.swiper-slide img {
+.categorySwiper .swiper-slide img {
     width: 100% !important;
     height: 40dvh;
     object-fit: cover;
