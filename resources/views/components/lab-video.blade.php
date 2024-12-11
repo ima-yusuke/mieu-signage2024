@@ -1,4 +1,4 @@
-<div class="swiper-slide relative overflow-hidden">
+<div class="swiper-slide relative overflow-hidden px-[0.7rem]">
     <!-- サムネイル -->
     <img
         src="{{ asset("storage/img/$img") }}"

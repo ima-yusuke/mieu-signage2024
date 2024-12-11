@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>三重大学紹介</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -93,24 +93,24 @@
             <div class="swiper-wrapper">
                 <x-lab-video  src="test-video.MOV" img="lab-01.png"/>
                 <x-lab-video src="test-video.MOV" img="lab-02.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-03.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-04.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-05.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-06.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-07.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-08.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-09.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-10.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-11.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-12.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-13.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-14.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-16.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-17.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-18.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-19.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-20.png"/>
-                <x-lab-video src="video-01.mp4" img="lab-21.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-03.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-04.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-05.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-06.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-07.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-08.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-09.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-10.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-11.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-12.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-13.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-14.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-16.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-17.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-18.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-19.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-20.png"/>
+                <x-lab-video src="lab-01.mp4" img="lab-21.png"/>
             </div>
         </div>
 
@@ -157,12 +157,12 @@
         {{--ビデオ（ドローン）--}}
         <article class="hidden flex-col justify-center items-center gap-8 h-full min-w-full" id="video_container">
             <video id="myVideo" class="w-[70%] max-h-[70dvh]" controls>
-                <source src="{{asset("storage/video/video-01.mp4")}}" type="video/mp4">
+                <source src="{{asset("storage/video/lab-01.mp4")}}" type="video/mp4">
             </video>
             <aside class="flex justify-center items-center gap-6">
-                <x-chapter-btn id="chapter1"></x-chapter-btn>
-                <x-chapter-btn id="chapter2"></x-chapter-btn>
-                <x-chapter-btn id="chapter3"></x-chapter-btn>
+                <x-chapter-btn id="最初から再生"></x-chapter-btn>
+                <x-chapter-btn id="学内飛行映像"></x-chapter-btn>
+                <x-chapter-btn id="自由飛行映像"></x-chapter-btn>
             </aside>
         </article>
 
