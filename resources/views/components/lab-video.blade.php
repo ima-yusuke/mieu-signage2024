@@ -3,10 +3,10 @@
     <img
         src="{{ asset("storage/img/$img") }}"
         alt="Video Thumbnail"
-        class="absolute w-auto h-full cursor-pointer z-10 thumbnail"
+        class="m-auto w-auto h-full cursor-pointer z-10 thumbnail "
     >
     <video
-        class="w-full h-full video"
+        class="w-0 h-0 video"
         controls
         style="display: none;">
         <source src="{{ asset("storage/video/$src") }}" type="video/mp4">
